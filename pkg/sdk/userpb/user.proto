@@ -4,6 +4,8 @@ option go_package = "github.com/ecnuvj/vhoj_user/pkg/sdk/userpb";
 
 package sdk;
 
+import "userpb/role.proto";
+
 message User {
     uint64 user_id = 1;
     string username = 2;
@@ -11,7 +13,7 @@ message User {
     string password = 4;
     string email = 5;
     string school = 6;
-    repeated string roles = 7;
+    repeated Role roles = 7;
     int64 accepted = 8;
     int64 submitted = 9;
 }

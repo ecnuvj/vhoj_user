@@ -20,8 +20,14 @@ func (u *UserHandler) Login(ctx context.Context, request *userpb.LoginRequest) (
 			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "login request is nil"),
 		}, fmt.Errorf("login request is nil")
 	}
-	//
+	user, err := u.UserService.Login(request.Nickname, request.Password)
+	if err != nil {
+		return &userpb.LoginResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
 	return &userpb.LoginResponse{
+		User:         user,
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil
 }
@@ -32,7 +38,14 @@ func (u *UserHandler) Register(ctx context.Context, request *userpb.RegisterRequ
 			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "register request is nil"),
 		}, fmt.Errorf("register request is nil")
 	}
+	user, err := u.UserService.Register(request.User)
+	if err != nil {
+		return &userpb.RegisterResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
 	return &userpb.RegisterResponse{
+		User:         user,
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil
 }
@@ -43,9 +56,14 @@ func (u *UserHandler) GenerateUsers(ctx context.Context, request *userpb.Generat
 			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
 		}, fmt.Errorf("request is nil")
 	}
-
+	users, err := u.UserService.GenerateUsers(uint(request.ContestId), request.GenerateCount)
+	if err != nil {
+		return &userpb.GenerateUsersResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
 	return &userpb.GenerateUsersResponse{
-		Users:        nil,
+		Users:        users,
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil
 }
@@ -56,18 +74,30 @@ func (u *UserHandler) GetUserRoles(ctx context.Context, request *userpb.GetUserR
 			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
 		}, fmt.Errorf("request is nil")
 	}
-
+	roles, err := u.UserService.GetUserRoles(uint(request.UserId))
+	if err != nil {
+		return &userpb.GetUserRolesResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
 	return &userpb.GetUserRolesResponse{
-		Roles:        nil,
+		Roles:        roles,
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil
 }
 
+//role id 必须给到
 func (u *UserHandler) UpdateUserRoles(ctx context.Context, request *userpb.UpdateUserRolesRequest) (*userpb.UpdateUserRolesResponse, error) {
 	if request == nil {
 		return &userpb.UpdateUserRolesResponse{
 			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
 		}, fmt.Errorf("request is nil")
+	}
+	err := u.UserService.UpdateUserRoles(uint(request.UserId), request.Roles)
+	if err != nil {
+		return &userpb.UpdateUserRolesResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
 	}
 	return &userpb.UpdateUserRolesResponse{
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
@@ -80,11 +110,16 @@ func (u *UserHandler) GetAllUsers(ctx context.Context, request *userpb.GetAllUse
 			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
 		}, fmt.Errorf("request is nil")
 	}
-
+	users, pageInfo, err := u.UserService.GetAllUsers(request.PageNo, request.PageSize)
+	if err != nil {
+		return &userpb.GetAllUsersResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
 	return &userpb.GetAllUsersResponse{
-		User:         nil,
-		TotalPages:   0,
-		TotalCount:   0,
+		Users:        users,
+		TotalPages:   pageInfo.TotalPages,
+		TotalCount:   pageInfo.TotalCount,
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil
 }
@@ -95,7 +130,16 @@ func (u *UserHandler) DeleteUsers(ctx context.Context, request *userpb.DeleteUse
 			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
 		}, fmt.Errorf("request is nil")
 	}
-
+	userIds := make([]uint, len(request.UserIds))
+	for i, u := range request.UserIds {
+		userIds[i] = uint(u)
+	}
+	err := u.UserService.DeleteUsers(userIds)
+	if err != nil {
+		return &userpb.DeleteUsersResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
 	return &userpb.DeleteUsersResponse{
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil

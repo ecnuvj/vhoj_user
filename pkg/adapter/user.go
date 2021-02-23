@@ -6,12 +6,7 @@ import (
 )
 
 func RpcUserToModelUser(user *userpb.User) *model.User {
-	roles := make([]*model.Role, len(user.Roles))
-	for i, r := range user.Roles {
-		roles[i] = &model.Role{
-			RoleName: r,
-		}
-	}
+	roles := RpcRolesToModelRoles(user.Roles)
 	return &model.User{
 		UserAuth: &model.UserAuth{
 			UserID:   uint(user.UserAuthId),
@@ -27,10 +22,7 @@ func RpcUserToModelUser(user *userpb.User) *model.User {
 }
 
 func ModelUserToRpcUser(user *model.User) *userpb.User {
-	roles := make([]string, len(user.Roles))
-	for i, r := range user.Roles {
-		roles[i] = r.RoleName
-	}
+	roles := ModelRolesToRpcRoles(user.Roles)
 	return &userpb.User{
 		UserId:     uint64(user.ID),
 		Username:   user.Nickname,

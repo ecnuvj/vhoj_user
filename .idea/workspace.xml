@@ -20,27 +20,21 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e857fa25-5b18-428b-9ac8-d7ccbda6d03d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vhoj_user.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/compile.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/config/mysql.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/adapter/user.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/bootstrap/database/init.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/bootstrap/init.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/handler/handler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/sdk/base/base.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/sdk/base/base.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/sdk/userpb/service.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/sdk/userpb/service.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/sdk/userpb/service_grpc.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/sdk/userpb/user.pb.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/sdk/userpb/user.proto" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/service/service.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pkg/util/reply.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/adapter/role.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/common/page.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/sdk/userpb/role.pb.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/sdk/userpb/role.proto" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pkg/service/service_test.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/compile.bat" beforeDir="false" afterPath="$PROJECT_DIR$/compile.bat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/go.mod" beforeDir="false" afterPath="$PROJECT_DIR$/go.mod" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/adapter/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/adapter/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/handler/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/handler/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/sdk/userpb/service.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/userpb/service.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/sdk/userpb/service.proto" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/userpb/service.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/sdk/userpb/user.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/userpb/user.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/sdk/userpb/user.proto" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/userpb/user.proto" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/service/service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +74,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/pkg/util" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pkg/common" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -91,6 +85,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Users\14861\go\src\github.com\vhoj_user\pkg\common" />
       <recent name="D:\Users\14861\go\src\github.com\vhoj_user\pkg\util" />
       <recent name="D:\Users\14861\go\src\github.com\vhoj_user" />
       <recent name="D:\Users\14861\go\src\github.com\vhoj_user\pkg\sdk\base" />
@@ -98,6 +93,48 @@
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Users\14861\go\src\github.com\vhoj_user\pkg" />
     </key>
+  </component>
+  <component name="RunManager" selected="Go Test.TestUserService_DeleteUsers in github.com/ecnuvj/vhoj_user/pkg/service">
+    <configuration name="TestUserService_DeleteUsers in github.com/ecnuvj/vhoj_user/pkg/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="vhoj_user" />
+      <working_directory value="$PROJECT_DIR$/pkg/service" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/ecnuvj/vhoj_user/pkg/service" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestUserService_DeleteUsers\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestUserService_Login in github.com/ecnuvj/vhoj_user/pkg/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="vhoj_user" />
+      <working_directory value="$PROJECT_DIR$/pkg/service" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/ecnuvj/vhoj_user/pkg/service" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestUserService_Login\E$" />
+      <method v="2" />
+    </configuration>
+    <configuration name="TestUserService_Register in github.com/ecnuvj/vhoj_user/pkg/service" type="GoTestRunConfiguration" factoryName="Go Test" temporary="true" nameIsGenerated="true">
+      <module name="vhoj_user" />
+      <working_directory value="$PROJECT_DIR$/pkg/service" />
+      <framework value="gotest" />
+      <kind value="PACKAGE" />
+      <package value="github.com/ecnuvj/vhoj_user/pkg/service" />
+      <directory value="$PROJECT_DIR$" />
+      <filePath value="$PROJECT_DIR$" />
+      <pattern value="^\QTestUserService_Register\E$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Go Test.TestUserService_DeleteUsers in github.com/ecnuvj/vhoj_user/pkg/service" />
+        <item itemvalue="Go Test.TestUserService_Login in github.com/ecnuvj/vhoj_user/pkg/service" />
+        <item itemvalue="Go Test.TestUserService_Register in github.com/ecnuvj/vhoj_user/pkg/service" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -129,6 +166,22 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="425" y="209" key="EditFileWatcherDialog/0.0.1536.864@0.0.1536.864" timestamp="1613899006044" />
+    <state width="1493" height="223" key="GridCell.Tab.0.bottom" timestamp="1614070620530">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="223" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1614070620530" />
+    <state width="1493" height="223" key="GridCell.Tab.0.center" timestamp="1614070620529">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="223" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1614070620529" />
+    <state width="1493" height="223" key="GridCell.Tab.0.left" timestamp="1614070620529">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="223" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1614070620529" />
+    <state width="1493" height="223" key="GridCell.Tab.0.right" timestamp="1614070620529">
+      <screen x="0" y="0" width="1536" height="864" />
+    </state>
+    <state width="1493" height="223" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1614070620529" />
     <state x="270" y="77" key="SettingsEditor" timestamp="1613899007273">
       <screen x="0" y="0" width="1536" height="864" />
     </state>
