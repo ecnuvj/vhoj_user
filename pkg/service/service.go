@@ -120,3 +120,11 @@ func (UserService) DeleteUsers(userIds []uint) error {
 	}
 	return nil
 }
+
+func (UserService) GetUsersByIds(userIds []uint) ([]*userpb.User, error) {
+	users, err := user_mapper.UserMapper.FindUsersByIds(userIds)
+	if err != nil {
+		return nil, err
+	}
+	return adapter.ModelUsersToRpcUsers(users), nil
+}

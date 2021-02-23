@@ -24,6 +24,7 @@ type UserServiceClient interface {
 	UpdateUserRoles(ctx context.Context, in *UpdateUserRolesRequest, opts ...grpc.CallOption) (*UpdateUserRolesResponse, error)
 	GetAllUsers(ctx context.Context, in *GetAllUsersRequest, opts ...grpc.CallOption) (*GetAllUsersResponse, error)
 	DeleteUsers(ctx context.Context, in *DeleteUsersRequest, opts ...grpc.CallOption) (*DeleteUsersResponse, error)
+	GetUsersByIds(ctx context.Context, in *GetUsersByIdsRequest, opts ...grpc.CallOption) (*GetUsersByIdsResponse, error)
 }
 
 type userServiceClient struct {
@@ -97,6 +98,15 @@ func (c *userServiceClient) DeleteUsers(ctx context.Context, in *DeleteUsersRequ
 	return out, nil
 }
 
+func (c *userServiceClient) GetUsersByIds(ctx context.Context, in *GetUsersByIdsRequest, opts ...grpc.CallOption) (*GetUsersByIdsResponse, error) {
+	out := new(GetUsersByIdsResponse)
+	err := c.cc.Invoke(ctx, "/sdk.UserService/GetUsersByIds", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServiceServer is the server API for UserService service.
 // All implementations must embed UnimplementedUserServiceServer
 // for forward compatibility
@@ -108,6 +118,7 @@ type UserServiceServer interface {
 	UpdateUserRoles(context.Context, *UpdateUserRolesRequest) (*UpdateUserRolesResponse, error)
 	GetAllUsers(context.Context, *GetAllUsersRequest) (*GetAllUsersResponse, error)
 	DeleteUsers(context.Context, *DeleteUsersRequest) (*DeleteUsersResponse, error)
+	GetUsersByIds(context.Context, *GetUsersByIdsRequest) (*GetUsersByIdsResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -135,6 +146,9 @@ func (UnimplementedUserServiceServer) GetAllUsers(context.Context, *GetAllUsersR
 }
 func (UnimplementedUserServiceServer) DeleteUsers(context.Context, *DeleteUsersRequest) (*DeleteUsersResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteUsers not implemented")
+}
+func (UnimplementedUserServiceServer) GetUsersByIds(context.Context, *GetUsersByIdsRequest) (*GetUsersByIdsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetUsersByIds not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}
 
@@ -275,6 +289,24 @@ func _UserService_DeleteUsers_Handler(srv interface{}, ctx context.Context, dec 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _UserService_GetUsersByIds_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetUsersByIdsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServiceServer).GetUsersByIds(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/sdk.UserService/GetUsersByIds",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServiceServer).GetUsersByIds(ctx, req.(*GetUsersByIdsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _UserService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "sdk.UserService",
 	HandlerType: (*UserServiceServer)(nil),
@@ -306,6 +338,10 @@ var _UserService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteUsers",
 			Handler:    _UserService_DeleteUsers_Handler,
+		},
+		{
+			MethodName: "GetUsersByIds",
+			Handler:    _UserService_GetUsersByIds_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

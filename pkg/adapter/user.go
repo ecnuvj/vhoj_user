@@ -35,3 +35,19 @@ func ModelUserToRpcUser(user *model.User) *userpb.User {
 		Submitted:  user.Submitted,
 	}
 }
+
+func RpcUsersToModelUsers(users []*userpb.User) []*model.User {
+	retUsers := make([]*model.User, len(users))
+	for i, u := range users {
+		retUsers[i] = RpcUserToModelUser(u)
+	}
+	return retUsers
+}
+
+func ModelUsersToRpcUsers(users []*model.User) []*userpb.User {
+	retUsers := make([]*userpb.User, len(users))
+	for i, u := range users {
+		retUsers[i] = ModelUserToRpcUser(u)
+	}
+	return retUsers
+}

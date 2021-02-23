@@ -14,6 +14,12 @@ type UserHandler struct {
 	UserService *service.UserService
 }
 
+func NewUserHandler() (*UserHandler, error) {
+	return &UserHandler{
+		UserService: &service.UserService{},
+	}, nil
+}
+
 func (u *UserHandler) Login(ctx context.Context, request *userpb.LoginRequest) (*userpb.LoginResponse, error) {
 	if request == nil {
 		return &userpb.LoginResponse{
@@ -141,6 +147,28 @@ func (u *UserHandler) DeleteUsers(ctx context.Context, request *userpb.DeleteUse
 		}, fmt.Errorf("service error: %v", err)
 	}
 	return &userpb.DeleteUsersResponse{
+		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
+	}, nil
+}
+
+func (u *UserHandler) GetUsersByIds(ctx context.Context, request *userpb.GetUsersByIdsRequest) (*userpb.GetUsersByIdsResponse, error) {
+	if request == nil {
+		return &userpb.GetUsersByIdsResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
+		}, fmt.Errorf("request is nil")
+	}
+	userIds := make([]uint, len(request.UserIds))
+	for i, u := range request.UserIds {
+		userIds[i] = uint(u)
+	}
+	users, err := u.UserService.GetUsersByIds(userIds)
+	if err != nil {
+		return &userpb.GetUsersByIdsResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
+	return &userpb.GetUsersByIdsResponse{
+		Users:        users,
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil
 }
