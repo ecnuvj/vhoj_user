@@ -92,8 +92,12 @@ func (UserService) GetUserRoles(userId uint) ([]*userpb.Role, error) {
 }
 
 //role id 必须给到
-func (UserService) UpdateUserRoles(userId uint, roles []*userpb.Role) error {
-	return user_mapper.UserMapper.UpdateUserRoles(userId, adapter.RpcRolesToModelRoles(roles))
+func (UserService) UpdateUserRoles(userId uint, roles []*userpb.Role) (*userpb.User, error) {
+	user, err := user_mapper.UserMapper.UpdateUserRoles(userId, adapter.RpcRolesToModelRoles(roles))
+	if err != nil {
+		return nil, err
+	}
+	return adapter.ModelUserToRpcUser(user), nil
 }
 
 func (UserService) GetAllUsers(pageNo int32, pageSize int32) ([]*userpb.User, *common.PageInfo, error) {
@@ -127,4 +131,13 @@ func (UserService) GetUsersByIds(userIds []uint) ([]*userpb.User, error) {
 		return nil, err
 	}
 	return adapter.ModelUsersToRpcUsers(users), nil
+}
+
+func (UserService) UpdateUserInfo(userId uint, user *userpb.User) (*userpb.User, error) {
+	user.UserId = uint64(userId)
+	retUser, err := user_mapper.UserMapper.UpdateUser(adapter.RpcUserToModelUser(user))
+	if err != nil {
+		return nil, err
+	}
+	return adapter.ModelUserToRpcUser(retUser), nil
 }

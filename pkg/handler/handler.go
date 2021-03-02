@@ -99,13 +99,14 @@ func (u *UserHandler) UpdateUserRoles(ctx context.Context, request *userpb.Updat
 			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
 		}, fmt.Errorf("request is nil")
 	}
-	err := u.UserService.UpdateUserRoles(uint(request.UserId), request.Roles)
+	user, err := u.UserService.UpdateUserRoles(uint(request.UserId), request.Roles)
 	if err != nil {
 		return &userpb.UpdateUserRolesResponse{
 			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
 		}, fmt.Errorf("service error: %v", err)
 	}
 	return &userpb.UpdateUserRolesResponse{
+		User:         user,
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil
 }
@@ -169,6 +170,24 @@ func (u *UserHandler) GetUsersByIds(ctx context.Context, request *userpb.GetUser
 	}
 	return &userpb.GetUsersByIdsResponse{
 		Users:        users,
+		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
+	}, nil
+}
+
+func (u *UserHandler) UpdateUserInfo(ctx context.Context, request *userpb.UpdateUserInfoRequest) (*userpb.UpdateUserInfoResponse, error) {
+	if request == nil {
+		return &userpb.UpdateUserInfoResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
+		}, fmt.Errorf("request is nil")
+	}
+	user, err := u.UserService.UpdateUserInfo(uint(request.UserId), request.User)
+	if err != nil {
+		return &userpb.UpdateUserInfoResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
+	return &userpb.UpdateUserInfoResponse{
+		User:         user,
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil
 }

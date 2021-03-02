@@ -17,6 +17,7 @@ service UserService {
     rpc GetAllUsers(GetAllUsersRequest) returns(GetAllUsersResponse) {};
     rpc DeleteUsers(DeleteUsersRequest) returns(DeleteUsersResponse) {};
     rpc GetUsersByIds(GetUsersByIdsRequest) returns(GetUsersByIdsResponse) {};
+    rpc UpdateUserInfo(UpdateUserInfoRequest) returns(UpdateUserInfoResponse) {};
 }
 
 message LoginRequest {
@@ -63,7 +64,8 @@ message UpdateUserRolesRequest {
 }
 
 message UpdateUserRolesResponse {
-    base.BaseResponse base_response = 1;
+    User user = 1;
+    base.BaseResponse base_response = 2;
 }
 
 message GetAllUsersRequest {
@@ -92,5 +94,15 @@ message GetUsersByIdsRequest {
 
 message GetUsersByIdsResponse {
     repeated User users = 1;
+    base.BaseResponse base_response = 2;
+}
+
+message UpdateUserInfoRequest {
+    uint64 user_id = 1;
+    User user = 2;
+}
+
+message UpdateUserInfoResponse {
+    User user = 1;
     base.BaseResponse base_response = 2;
 }

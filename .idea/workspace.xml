@@ -20,17 +20,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e857fa25-5b18-428b-9ac8-d7ccbda6d03d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/pkg/bootstrap/rpc_service/init.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/compile.bat" beforeDir="false" afterPath="$PROJECT_DIR$/compile.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/go.sum" beforeDir="false" afterPath="$PROJECT_DIR$/go.sum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/adapter/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/adapter/user.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/bootstrap/database/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/bootstrap/database/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pkg/bootstrap/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/bootstrap/init.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/handler/handler.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/handler/handler.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/sdk/base/base.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/base/base.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/sdk/userpb/role.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/userpb/role.pb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/sdk/userpb/service.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/userpb/service.pb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/sdk/userpb/service.proto" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/userpb/service.proto" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/sdk/userpb/service_grpc.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/userpb/service_grpc.pb.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pkg/sdk/userpb/user.pb.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/sdk/userpb/user.pb.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/service/service.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +76,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="settings.editor.selected.configurable" value="watcher.settings" />
+    <property name="settings.editor.selected.configurable" value="go.sdk" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -158,6 +156,7 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -174,25 +173,30 @@
       <screen x="0" y="0" width="1536" height="864" />
     </state>
     <state x="425" y="209" key="EditFileWatcherDialog/0.0.1536.864@0.0.1536.864" timestamp="1613899006044" />
-    <state width="1493" height="223" key="GridCell.Tab.0.bottom" timestamp="1614093619350">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom" timestamp="1614696811009">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.bottom/-1050.-292.1050.1680/0.0.1920.1080@0.0.1920.1080" timestamp="1614696811009" />
     <state width="1493" height="223" key="GridCell.Tab.0.bottom/0.0.1536.864@0.0.1536.864" timestamp="1614093619350" />
-    <state width="1493" height="223" key="GridCell.Tab.0.center" timestamp="1614093619350">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1877" height="295" key="GridCell.Tab.0.center" timestamp="1614696811009">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.center/-1050.-292.1050.1680/0.0.1920.1080@0.0.1920.1080" timestamp="1614696811009" />
     <state width="1493" height="223" key="GridCell.Tab.0.center/0.0.1536.864@0.0.1536.864" timestamp="1614093619350" />
-    <state width="1493" height="223" key="GridCell.Tab.0.left" timestamp="1614093619349">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1877" height="295" key="GridCell.Tab.0.left" timestamp="1614696811009">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.left/-1050.-292.1050.1680/0.0.1920.1080@0.0.1920.1080" timestamp="1614696811009" />
     <state width="1493" height="223" key="GridCell.Tab.0.left/0.0.1536.864@0.0.1536.864" timestamp="1614093619349" />
-    <state width="1493" height="223" key="GridCell.Tab.0.right" timestamp="1614093619350">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state width="1877" height="295" key="GridCell.Tab.0.right" timestamp="1614696811009">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state width="1877" height="295" key="GridCell.Tab.0.right/-1050.-292.1050.1680/0.0.1920.1080@0.0.1920.1080" timestamp="1614696811009" />
     <state width="1493" height="223" key="GridCell.Tab.0.right/0.0.1536.864@0.0.1536.864" timestamp="1614093619350" />
-    <state x="270" y="77" key="SettingsEditor" timestamp="1613899007273">
-      <screen x="0" y="0" width="1536" height="864" />
+    <state x="338" y="96" key="SettingsEditor" timestamp="1614673421487">
+      <screen x="0" y="0" width="1920" height="1080" />
     </state>
+    <state x="338" y="96" key="SettingsEditor/-1050.-292.1050.1680/0.0.1920.1080@0.0.1920.1080" timestamp="1614673421487" />
     <state x="270" y="77" key="SettingsEditor/0.0.1536.864@0.0.1536.864" timestamp="1613899007273" />
   </component>
 </project>
