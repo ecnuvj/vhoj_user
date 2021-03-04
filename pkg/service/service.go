@@ -72,7 +72,6 @@ func (UserService) GenerateUsers(contestId uint, count int32) ([]*userpb.User, e
 				},
 			},
 			GenerateUser: true,
-			ContestId:    contestId,
 		}
 		user, err := user_mapper.UserMapper.AddUser(generateUser)
 		if err == nil {
