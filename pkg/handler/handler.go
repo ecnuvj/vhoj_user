@@ -3,7 +3,7 @@ package handler
 import (
 	"context"
 	"fmt"
-	"github.com/ecnuvj/vhoj_user/pkg/sdk/base"
+	"github.com/ecnuvj/vhoj_rpc/model/base"
 	"github.com/ecnuvj/vhoj_user/pkg/sdk/userpb"
 	"github.com/ecnuvj/vhoj_user/pkg/service"
 	"github.com/ecnuvj/vhoj_user/pkg/util"
@@ -187,6 +187,42 @@ func (u *UserHandler) UpdateUserInfo(ctx context.Context, request *userpb.Update
 		}, fmt.Errorf("service error: %v", err)
 	}
 	return &userpb.UpdateUserInfoResponse{
+		User:         user,
+		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
+	}, nil
+}
+
+func (u *UserHandler) GetUserById(ctx context.Context, request *userpb.GetUserByIdRequest) (*userpb.GetUserByIdResponse, error) {
+	if request == nil {
+		return &userpb.GetUserByIdResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
+		}, fmt.Errorf("request is nil")
+	}
+	user, err := u.UserService.GetUserById(uint(request.UserId))
+	if err != nil {
+		return &userpb.GetUserByIdResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
+	return &userpb.GetUserByIdResponse{
+		User:         user,
+		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
+	}, nil
+}
+
+func (u *UserHandler) GetUserByUsername(ctx context.Context, request *userpb.GetUserByUsernameRequest) (*userpb.GetUserByUsernameResponse, error) {
+	if request == nil {
+		return &userpb.GetUserByUsernameResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
+		}, fmt.Errorf("request is nil")
+	}
+	user, err := u.UserService.GetUserByUsername(request.Username)
+	if err != nil {
+		return &userpb.GetUserByUsernameResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
+	return &userpb.GetUserByUsernameResponse{
 		User:         user,
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil

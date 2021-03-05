@@ -18,6 +18,26 @@ service UserService {
     rpc DeleteUsers(DeleteUsersRequest) returns(DeleteUsersResponse) {};
     rpc GetUsersByIds(GetUsersByIdsRequest) returns(GetUsersByIdsResponse) {};
     rpc UpdateUserInfo(UpdateUserInfoRequest) returns(UpdateUserInfoResponse) {};
+    rpc GetUserById(GetUserByIdRequest) returns(GetUserByIdResponse) {};
+    rpc GetUserByUsername(GetUserByUsernameRequest) returns(GetUserByUsernameResponse) {};
+}
+
+message GetUserByIdRequest {
+    uint64 userId = 1;
+}
+
+message GetUserByIdResponse {
+    User user = 1;
+    base.BaseResponse base_response = 2;
+}
+
+message GetUserByUsernameRequest {
+    string username = 1;
+}
+
+message GetUserByUsernameResponse {
+    User user = 1;
+    base.BaseResponse base_response = 2;
 }
 
 message LoginRequest {

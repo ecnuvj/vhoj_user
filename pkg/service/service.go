@@ -140,3 +140,19 @@ func (UserService) UpdateUserInfo(userId uint, user *userpb.User) (*userpb.User,
 	}
 	return adapter.ModelUserToRpcUser(retUser), nil
 }
+
+func (UserService) GetUserById(userId uint) (*userpb.User, error) {
+	user, err := user_mapper.UserMapper.FindUserById(userId)
+	if err != nil {
+		return nil, err
+	}
+	return adapter.ModelUserToRpcUser(user), nil
+}
+
+func (UserService) GetUserByUsername(username string) (*userpb.User, error) {
+	user, err := user_mapper.UserMapper.FindUserByUsername(username)
+	if err != nil {
+		return nil, err
+	}
+	return adapter.ModelUserToRpcUser(user), nil
+}
