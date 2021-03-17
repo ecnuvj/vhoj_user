@@ -40,7 +40,11 @@ func (UserService) Register(rpcUser *userpb.User) (*userpb.User, error) {
 			RoleName: role.NORMAL_USER,
 		},
 	}
-	user, err := user_mapper.UserMapper.AddUser(adapter.RpcUserToModelUser(rpcUser))
+	modelUser := adapter.RpcUserToModelUser(rpcUser)
+	if modelUser.UserAuth == nil {
+		return nil, fmt.Errorf("register error, no user auth")
+	}
+	user, err := user_mapper.UserMapper.AddUser(modelUser)
 	if err != nil {
 		return nil, err
 	}

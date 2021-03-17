@@ -12,7 +12,9 @@ func RpcUserToModelUser(user *userpb.User) *model.User {
 		Model:    gorm.Model{ID: uint(user.UserAuthId)},
 		Password: user.Password,
 	}
-	if user.UserAuthId == 0 || user.Password == "" {
+	//注册的时候没有user_auth_id
+	//修改用户信息的时候password传空值表示不修改密码
+	if user.Password == "" {
 		userAuth = nil
 	}
 	return &model.User{
