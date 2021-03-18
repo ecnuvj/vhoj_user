@@ -160,3 +160,11 @@ func (UserService) GetUserByUsername(username string) (*userpb.User, error) {
 	}
 	return adapter.ModelUserToRpcUser(user), nil
 }
+
+func (UserService) GetRoleList() ([]*userpb.Role, error) {
+	roles, err := user_mapper.UserMapper.FindRoleList()
+	if err != nil {
+		return nil, err
+	}
+	return adapter.ModelRolesToRpcRoles(roles), nil
+}

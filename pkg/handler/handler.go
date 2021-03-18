@@ -227,3 +227,21 @@ func (u *UserHandler) GetUserByUsername(ctx context.Context, request *userpb.Get
 		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
 	}, nil
 }
+
+func (u *UserHandler) GetRoleList(ctx context.Context, request *userpb.GetRoleListRequest) (*userpb.GetRoleListResponse, error) {
+	if request == nil {
+		return &userpb.GetRoleListResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "request is nil"),
+		}, fmt.Errorf("request is nil")
+	}
+	roles, err := u.UserService.GetRoleList()
+	if err != nil {
+		return &userpb.GetRoleListResponse{
+			BaseResponse: util.PbReplyf(base.REPLY_STATUS_FAILURE, "service error: %v", err),
+		}, fmt.Errorf("service error: %v", err)
+	}
+	return &userpb.GetRoleListResponse{
+		Roles:        roles,
+		BaseResponse: util.PbReplyf(base.REPLY_STATUS_SUCCESS, "success"),
+	}, nil
+}

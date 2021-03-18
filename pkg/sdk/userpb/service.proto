@@ -20,6 +20,16 @@ service UserService {
     rpc UpdateUserInfo(UpdateUserInfoRequest) returns(UpdateUserInfoResponse) {};
     rpc GetUserById(GetUserByIdRequest) returns(GetUserByIdResponse) {};
     rpc GetUserByUsername(GetUserByUsernameRequest) returns(GetUserByUsernameResponse) {};
+    rpc GetRoleList(GetRoleListRequest) returns(GetRoleListResponse) {};
+}
+
+message GetRoleListRequest {
+
+}
+
+message GetRoleListResponse {
+    repeated Role roles = 1;
+    base.BaseResponse base_response = 2;
 }
 
 message GetUserByIdRequest {
